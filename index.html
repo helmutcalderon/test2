@@ -601,29 +601,44 @@
 
     <!-- Robust Script to Dynamically Resize Calendly Widget -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const calendlyContainer = document.getElementById('calendly-container');
+       document.addEventListener('DOMContentLoaded', function() {
         const calendlyWidget = document.getElementById('calendly-widget');
-        let hasBeenExpanded = false;
 
-        if (calendlyContainer && calendlyWidget) {
-          calendlyContainer.addEventListener('click', function() {
-            if (!hasBeenExpanded) {
-              // Set the flag to true immediately to prevent multiple triggers
-              hasBeenExpanded = true;
-              
-              // Wait a moment for the iframe to load the time slots
-              setTimeout(function() {
-                let newHeight = '900px'; // Expanded height for desktop
+        // Check if the widget exists to prevent errors
+        if (calendlyWidget) {
+          const config = {
+            attributes: false, 
+            childList: true, 
+            subtree: true 
+          };
+
+          // Callback function to execute when mutations are observed
+          const callback = function(mutationsList, observer) {
+            for(const mutation of mutationsList) {
+              // We're looking for the moment the time slots appear.
+              // A good indicator is the appearance of a specific class Calendly uses.
+              const timeSlotSelector = '.calendly-time-slots';
+              if (calendlyWidget.querySelector(timeSlotSelector)) {
                 
+                // Set expanded height
+                let newHeight = '900px'; // Expanded height for desktop
                 if (window.innerWidth <= 768) {
                   newHeight = '3700px'; // Expanded height for mobile
                 }
-                
                 calendlyWidget.style.height = newHeight;
-              }, 400); // 400ms delay
+                
+                // Once we've expanded it, we don't need to watch anymore.
+                observer.disconnect();
+                break; // Exit the loop
+              }
             }
-          });
+          };
+
+          // Create an observer instance linked to the callback function
+          const observer = new MutationObserver(callback);
+
+          // Start observing the target node for configured mutations
+          observer.observe(calendlyWidget, config);
         }
       });
     </script>
