@@ -341,6 +341,10 @@
         overflow: hidden;
         background-color: white;
       }
+       /* Add a smooth transition for the height change */
+      .calendly-inline-widget {
+        transition: height 0.5s ease-in-out;
+      }
       
       /* Footer */
       .legal-footer {
@@ -397,10 +401,10 @@
             font-size: 1.1rem;
           }
           
-          /* CRITICAL: Adjust Calendly widget height for mobile to show all times */
+          /* Set the initial compact height for the Calendly widget on mobile */
           .calendly-inline-widget {
-            min-height: 1700px !important; 
-            height: 1700px !important;
+            min-height: 680px !important; 
+            height: 680px !important;
           }
 
           /* Reduce space for the trust section below calendly */
@@ -443,7 +447,8 @@
   
               <div class="calendly-container" id="calendly-embed">
                 <!-- Principio del widget integrado de Calendly -->
-                <div class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?hide_event_type_details=1&hide_gdpr_banner=1&text_color=000000&primary_color=ca1616" style="min-width:320px;height:1760px;"></div>
+                <!-- Set initial compact height here. JS will expand it. -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?hide_event_type_details=1&hide_gdpr_banner=1&text_color=000000&primary_color=ca1616" style="min-width:320px;height:700px;"></div>
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
                 <!-- Final del widget integrado de Calendly -->
               </div>
@@ -607,10 +612,26 @@
         </p>
       </div>
     </footer>
+
+    <!-- Script to dynamically resize Calendly widget -->
+    <script>
+      window.addEventListener('message', function(e) {
+        // Ensure the message is from Calendly
+        if (e.origin === "https://calendly.com" && e.data.event && e.data.event === 'calendly.date_and_time_selected') {
+          const calendlyWidget = document.querySelector('.calendly-inline-widget');
+          if (calendlyWidget) {
+            // Expanded height for desktop
+            let newHeight = '900px'; 
+            // Check for mobile viewport and apply a different height if needed
+            if (window.innerWidth <= 768) {
+              newHeight = '950px'; // Expanded height for mobile
+            }
+            calendlyWidget.style.height = newHeight;
+          }
+        }
+      });
+    </script>
+
   </body>
 </html>
-
-
-
-
 
