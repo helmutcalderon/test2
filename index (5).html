@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda Tu Consulta Estratégica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark-gradient: linear-gradient(to bottom, #1c1c1c, #0d0d0d);
+        --bg-card-dark: #1a1a1a;
+        --bg-card-light: #ffffff; /* Added for the new card */
+        --text-light: #f5f5f5;
+        --text-medium-dark: #a0a0a0;
+        --accent-green: #ca1616;
+        --border-color-dark: #2a2a2a;
+        --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-main);
+        line-height: 1.7;
+        font-weight: 400;
+        background: var(--bg-dark-gradient);
+        color: var(--text-medium-dark);
+        overflow-x: hidden;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .section-content-wrapper {
+        padding: 60px 0;
+      }
+      .highlight {
+        color: var(--accent-green);
+      }
+      h1, h2 {
+        color: var(--text-light);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+      }
+       h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      p {
+        font-size: 1.1rem;
+      }
+
+      /* Main Content Section */
+      .main-content-stacked {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+        text-align: center;
+        width: 100%;
+      }
+      .main-text-centered h1 {
+        margin-bottom: 20px;
+      }
+      .main-text-centered p.subtitle {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: var(--text-medium-dark);
+        max-width: 800px;
+        margin: 0 auto 40px; /* Added bottom margin */
+      }
+      
+      /* Calendly Embed Container */
+      .calendly-container {
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
+      }
+
+      .calendly-card {
+        background-color: var(--bg-card-light); /* CHANGED: From dark to light */
+        border: 1px solid var(--border-color-dark);
+        border-radius: 16px;
+        padding: 2px; /* Adjusted padding for a tighter look */
+        overflow: hidden;
+      }
+
+      /* Social Proof Section */
+      .social-proof-section {
+        padding-top: 80px;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .closing-photos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      .photo-card {
+        background-color: var(--bg-card-dark);
+        border: 1px solid var(--border-color-dark);
+        border-radius: 16px;
+        padding: 15px;
+        text-align: center;
+      }
+      .photo-placeholder {
+        width: 100%;
+        padding-top: 75%; /* 4:3 Aspect Ratio */
+        position: relative;
+        background-color: #111;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+      .photo-card .caption {
+        font-weight: 500;
+        color: var(--text-light);
+      }
+
+      /* Objections Section */
+      .objections-section {
+          padding: 80px 0;
+      }
+      .objection-item {
+        margin-bottom: 20px;
+        background-color: var(--bg-card-dark);
+        border: 1px solid var(--border-color-dark);
+        border-radius: 12px;
+        padding: 20px 25px;
+      }
+      .objection-item h3 {
+        color: var(--text-light);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      /* Footer */
+      .legal-footer {
+        background: #000;
+        color: #666;
+        padding: 60px 20px;
+        font-size: 12px;
+        line-height: 1.6;
+        text-align: center;
+      }
+      .legal-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .legal-content p {
+        margin-bottom: 15px;
+        font-size: 12px;
+      }
+      .legal-content strong {
+        color: #aaa;
+      }
+
+      @media (max-width: 768px) {
+        .section-content-wrapper, .social-proof-section, .objections-section {
+          padding-top: 60px;
+          padding-bottom: 60px;
+        }
+        h1 {
+            font-size: clamp(2.2rem, 7vw, 2.8rem);
+        }
+        h2 {
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+        }
+        .calendly-inline-widget {
+            height: 1100px !important; /* Adjust height for tablets */
+        }
+      }
+
+      @media (max-width: 480px) {
+        .section-content-wrapper, .social-proof-section, .objections-section {
+          padding: 40px 0;
+        }
+        h1 {
+          font-size: 2.2rem;
+        }
+        .calendly-inline-widget {
+            height: 950px !important; /* Further adjust height for mobile to reduce scrolling */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="section">
+        <div class="section-content-wrapper">
+          <div class="container">
+            <div class="main-content-stacked">
+              <div class="main-text-centered">
+                <h1>
+                  Agenda Tu Consulta Estratégica
+                  <span class="highlight">Ahora</span>
+                </h1>
+                <p class="subtitle">
+                  Selecciona el día y la hora que mejor te convenga.
+                </p>
+              </div>
+              
+              <!-- Calendly Embed Container -->
+              <div class="calendly-container">
+                <div class="calendly-card">
+                  <!-- Principio del widget integrado de Calendly -->
+                  <div class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?primary_color=ca1616" style="min-width:320px;height:1250px;"></div>
+                  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                  <!-- Final del widget integrado de Calendly -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="social-proof-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cientos de Emprendedores Como Tú Ya lo Lograron</h2>
+            </div>
+            <div class="closing-photos-grid">
+                <div class="photo-card">
+                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
+                    <p class="caption">Familia Pérez - Austin, TX</p>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
+                    <p class="caption">J. Ramirez - Miami, FL</p>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
+                    <p class="caption">Sofia Gomez - Denver, CO</p>
+                </div>
+              </div>
+        </div>
+      </section>
+
+      <section class="objections-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <h2>¿Qué Esperar de la Llamada?</h2>
+            </div>
+            <div class="objections-list">
+                <div class="objection-item">
+                    <h3>Análisis 100% Personalizado</h3>
+                    <p>No es una llamada de ventas. Analizaremos tu situación específica para darte un plan de acción claro y honesto.</p>
+                </div>
+                <div class="objection-item">
+                    <h3>Cero Compromiso y Cero Presión</h3>
+                    <p>El objetivo es darte claridad. Si nuestro sistema no es para ti, te lo diremos y te orientaremos en la dirección correcta.</p>
+                </div>
+                <div class="objection-item">
+                    <h3>Totalmente Confidencial</h3>
+                    <p>Tu información financiera y personal está segura. La llamada es privada y protegida.</p>
+                </div>
+            </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <div class="legal-content">
+          <p><strong>(LOGO EDGE HOME FINANCE)</strong></p>
+          <p>
+            Edge Home Finance Corp, is an Equal Housing Lender. NMLS #1932738.
+            Licencias en CA, CO, FL, MN, NC, ND, WI y TX.
+          </p>
+          <p>
+            Para más detalles sobre licencias y divulgaciones, visita nuestra página principal.
+          </p>
+        </div>
+      </footer>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
