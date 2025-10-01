@@ -13,12 +13,16 @@
     <style>
       :root {
         --bg-dark-gradient: linear-gradient(to bottom, #1c1c1c, #0d0d0d);
+        --bg-light: #f5f5f5; /* Added */
         --bg-card-dark: #1a1a1a;
-        --bg-card-light: #ffffff; /* Added for the new card */
+        --bg-card-light: #ffffff;
+        --text-dark: #111111; /* Added */
         --text-light: #f5f5f5;
         --text-medium-dark: #a0a0a0;
+        --text-medium-light: #555555; /* Added */
         --accent-green: #ca1616;
         --border-color-dark: #2a2a2a;
+        --border-color-light: #e0e0e0; /* Added */
         --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, Helvetica, Arial, sans-serif;
       }
@@ -49,7 +53,9 @@
       .highlight {
         color: var(--accent-green);
       }
-      h1, h2 {
+      h1,
+      h2,
+      h3 {
         color: var(--text-light);
         font-weight: 800;
         line-height: 1.15;
@@ -58,8 +64,14 @@
       h1 {
         font-size: clamp(2.5rem, 5vw, 3.5rem);
       }
-       h2 {
+      h2 {
         font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+      h3 {
+        color: var(--text-light);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
       }
       p {
         font-size: 1.1rem;
@@ -84,20 +96,49 @@
         max-width: 800px;
         margin: 0 auto 40px; /* Added bottom margin */
       }
-      
+
       /* Calendly Embed Container */
       .calendly-container {
         width: 100%;
         max-width: 1024px;
         margin: 0 auto;
       }
-
       .calendly-card {
-        background-color: var(--bg-card-light); /* CHANGED: From dark to light */
+        background-color: var(
+          --bg-card-light
+        ); /* CHANGED: From dark to light */
         border: 1px solid var(--border-color-dark);
         border-radius: 16px;
         padding: 2px; /* Adjusted padding for a tighter look */
         overflow: hidden;
+      }
+
+      /* --- NEW: Light Section Theme --- */
+      .section-light {
+        background-color: var(--bg-light);
+        color: var(--text-medium-light);
+      }
+      .section-light h1,
+      .section-light h2,
+      .section-light h3,
+      .section-light strong {
+        color: var(--text-dark);
+      }
+      .section-light .highlight {
+        background-color: var(--accent-green);
+        color: #ffffff;
+        padding: 0.1em 0.4em;
+        border-radius: 6px;
+      }
+      .section-light .photo-card {
+        background-color: var(--bg-card-light);
+        border: 1px solid var(--border-color-light);
+      }
+      .section-light .photo-card .caption {
+        color: var(--text-dark); /* Make caption text dark */
+      }
+      .section-light .photo-placeholder {
+        background-color: #e9ecef; /* Lighter placeholder background */
       }
 
       /* Social Proof Section */
@@ -142,7 +183,7 @@
 
       /* Objections Section */
       .objections-section {
-          padding: 80px 0;
+        padding: 80px 0;
       }
       .objection-item {
         margin-bottom: 20px;
@@ -150,12 +191,6 @@
         border: 1px solid var(--border-color-dark);
         border-radius: 12px;
         padding: 20px 25px;
-      }
-      .objection-item h3 {
-        color: var(--text-light);
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 5px;
       }
 
       /* Footer */
@@ -180,30 +215,34 @@
       }
 
       @media (max-width: 768px) {
-        .section-content-wrapper, .social-proof-section, .objections-section {
+        .section-content-wrapper,
+        .social-proof-section,
+        .objections-section {
           padding-top: 60px;
           padding-bottom: 60px;
         }
         h1 {
-            font-size: clamp(2.2rem, 7vw, 2.8rem);
+          font-size: clamp(2.2rem, 7vw, 2.8rem);
         }
         h2 {
-            font-size: clamp(1.8rem, 6vw, 2.2rem);
+          font-size: clamp(1.8rem, 6vw, 2.2rem);
         }
         .calendly-inline-widget {
-            height: 1100px !important; /* Adjust height for tablets */
+          height: 1100px !important; /* Adjust height for tablets */
         }
       }
 
       @media (max-width: 480px) {
-        .section-content-wrapper, .social-proof-section, .objections-section {
+        .section-content-wrapper,
+        .social-proof-section,
+        .objections-section {
           padding: 40px 0;
         }
         h1 {
           font-size: 2.2rem;
         }
         .calendly-inline-widget {
-            height: 950px !important; /* Further adjust height for mobile to reduce scrolling */
+          height: 950px !important; /* Further adjust height for mobile to reduce scrolling */
         }
       }
     </style>
@@ -223,88 +262,92 @@
                   Selecciona el día y la hora que mejor te convenga.
                 </p>
               </div>
-              
-              <!-- Calendly Embed Container -->
+
               <div class="calendly-container">
                 <div class="calendly-card">
-                  <!-- Principio del widget integrado de Calendly -->
-                  <div class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?primary_color=ca1616" style="min-width:320px;height:1250px;"></div>
-                  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                  <!-- Final del widget integrado de Calendly -->
-                </div>
+                  <div
+                    class="calendly-inline-widget"
+                    data-url="https://calendly.com/helmutcalderon/schedule?primary_color=ca1616"
+                    style="min-width: 320px; height: 1250px"
+                  ></div>
+                  <script
+                    type="text/javascript"
+                    src="https://assets.calendly.com/assets/external/widget.js"
+                    async
+                  ></script>
+                  </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="social-proof-section">
+      <section class="section-light social-proof-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Cientos de Emprendedores Como Tú Ya lo Lograron</h2>
+          <div class="section-header">
+            <h2>Cientos de Emprendedores Como Tú Ya lo Lograron</h2>
+          </div>
+          <div class="closing-photos-grid">
+            <div class="photo-card">
+              <div class="photo-placeholder"><span>Foto Cliente</span></div>
+              <p class="caption">Familia Pérez - Austin, TX</p>
             </div>
-            <div class="closing-photos-grid">
-                <div class="photo-card">
-                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
-                    <p class="caption">Familia Pérez - Austin, TX</p>
-                </div>
-                <div class="photo-card">
-                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
-                    <p class="caption">J. Ramirez - Miami, FL</p>
-                </div>
-                <div class="photo-card">
-                    <div class="photo-placeholder"><span>Foto Cliente</span></div>
-                    <p class="caption">Sofia Gomez - Denver, CO</p>
-                </div>
-              </div>
+            <div class="photo-card">
+              <div class="photo-placeholder"><span>Foto Cliente</span></div>
+              <p class="caption">J. Ramirez - Miami, FL</p>
+            </div>
+            <div class="photo-card">
+              <div class="photo-placeholder"><span>Foto Cliente</span></div>
+              <p class="caption">Sofia Gomez - Denver, CO</p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="objections-section">
-        <div class="container" style="max-width: 800px;">
-            <div class="section-header">
-                <h2>¿Qué Esperar de la Llamada?</h2>
+        <div class="container" style="max-width: 800px">
+          <div class="section-header">
+            <h2>¿Qué Esperar de la Llamada?</h2>
+          </div>
+          <div class="objections-list">
+            <div class="objection-item">
+              <h3>Análisis 100% Personalizado</h3>
+              <p>
+                No es una llamada de ventas. Analizaremos tu situación
+                específica para darte un plan de acción claro y honesto.
+              </p>
             </div>
-            <div class="objections-list">
-                <div class="objection-item">
-                    <h3>Análisis 100% Personalizado</h3>
-                    <p>No es una llamada de ventas. Analizaremos tu situación específica para darte un plan de acción claro y honesto.</p>
-                </div>
-                <div class="objection-item">
-                    <h3>Cero Compromiso y Cero Presión</h3>
-                    <p>El objetivo es darte claridad. Si nuestro sistema no es para ti, te lo diremos y te orientaremos en la dirección correcta.</p>
-                </div>
-                <div class="objection-item">
-                    <h3>Totalmente Confidencial</h3>
-                    <p>Tu información financiera y personal está segura. La llamada es privada y protegida.</p>
-                </div>
+            <div class="objection-item">
+              <h3>Cero Compromiso y Cero Presión</h3>
+              <p>
+                El objetivo es darte claridad. Si nuestro sistema no es para ti,
+                te lo diremos y te orientaremos en la dirección correcta.
+              </p>
             </div>
+            <div class="objection-item">
+              <h3>Totalmente Confidencial</h3>
+              <p>
+                Tu información financiera y personal está segura. La llamada es
+                privada y protegida.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
-
     </main>
 
     <footer class="legal-footer">
-        <div class="legal-content">
-          <p><strong>(LOGO EDGE HOME FINANCE)</strong></p>
-          <p>
-            Edge Home Finance Corp, is an Equal Housing Lender. NMLS #1932738.
-            Licencias en CA, CO, FL, MN, NC, ND, WI y TX.
-          </p>
-          <p>
-            Para más detalles sobre licencias y divulgaciones, visita nuestra página principal.
-          </p>
-        </div>
-      </footer>
+      <div class="legal-content">
+        <p><strong>(LOGO EDGE HOME FINANCE)</strong></p>
+        <p>
+          Edge Home Finance Corp, is an Equal Housing Lender. NMLS #1932738.
+          Licencias en CA, CO, FL, MN, NC, ND, WI y TX.
+        </p>
+        <p>
+          Para más detalles sobre licencias y divulgaciones, visita nuestra
+          página principal.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
