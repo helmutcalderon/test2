@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Felicidades! Un Paso Crucial Te Espera...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-dark-gradient: linear-gradient(to bottom, #1c1c1c, #0d0d0d);
+        --bg-card-dark: #1a1a1a;
+        --text-light: #f5f5f5;
+        --text-medium-dark: #a0a0a0;
+        --accent-red: #ca1616;
+        --border-color-dark: #2a2a2a;
+        --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-main);
+        line-height: 1.7;
+        font-weight: 400;
+        background: var(--bg-dark-gradient);
+        color: var(--text-medium-dark);
+        overflow-x: hidden;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* --- Typography & General Styles --- */
+      .section {
+        padding: 80px 0;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .highlight {
+        color: var(--accent-red);
+        background-color: transparent;
+      }
+      h1, h2, h3 {
+        color: var(--text-light);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 20px;
+      }
+       h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+       h3 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 15px;
+      }
+      p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      p.subtitle {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: var(--text-medium-dark);
+        max-width: 800px;
+        margin: 0 auto 30px auto;
+      }
+      
+      .cta-button {
+        display: inline-block;
+        padding: 18px 36px;
+        background: var(--accent-red);
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 400px;
+      }
+      .cta-button:hover {
+        filter: brightness(0.9);
+        transform: translateY(-3px);
+      }
+      
+      /* --- Light/Dark Section Theming --- */
+      .section-light {
+        background-color: #f5f5f7;
+        color: #333;
+      }
+      .section-light h1,
+      .section-light h2,
+      .section-light h3,
+      .section-light .faq-question,
+      .section-light .testimonial-card .author,
+      .section-light .comparison-card .result,
+      .section-light .math-simple,
+      .section-light .testimonial-card .quote-title {
+          color: #1a1a1a;
+      }
+      .section-light p,
+      .section-light li,
+      .section-light .testimonial-card .quote {
+          color: #4d4d4d;
+      }
+      .section-light p.subtitle {
+          color: #5a5a5a;
+      }
+      .section-light .step-card,
+      .section-light .comparison-card,
+      .section-light .testimonial-card,
+      .section-light .pre-video-text {
+          background-color: #ffffff;
+          border: 1px solid #e5e5e5;
+      }
+      .section-light .faq-item {
+          border-bottom: 1px solid #e5e5e5;
+      }
+      .section-cta-wrapper {
+          text-align: center;
+          margin-top: 60px;
+      }
+
+
+      /* --- Hero & Video Section --- */
+      .main-content-stacked {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+        text-align: center;
+        width: 100%;
+      }
+      .pre-video-text {
+          background-color: var(--bg-card-dark);
+          border: 1px solid var(--border-color-dark);
+          border-radius: 12px;
+          padding: 25px;
+          max-width: 800px;
+          text-align: left;
+      }
+      .pre-video-text h3 {
+          font-size: 1.3rem;
+          margin-bottom: 20px;
+      }
+       .pre-video-text ul {
+          list-style: none;
+          padding-left: 0;
+      }
+       .pre-video-text li {
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+      }
+      .video-container {
+        width: 100%;
+        max-width: 1024px;
+        background: #000;
+        border: 1px solid var(--border-color-dark);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      }
+      .video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+      
+      /* --- CTA Steps Section --- */
+      .steps-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 30px;
+          margin-top: 40px;
+          max-width: 1024px;
+          width: 100%;
+      }
+      .step-card {
+          background-color: var(--bg-card-dark);
+          border: 1px solid var(--border-color-dark);
+          border-radius: 16px;
+          padding: 30px;
+          text-align: left;
+      }
+      .step-card h3 {
+          font-size: 1.4rem;
+      }
+       .step-card ul {
+          list-style: none;
+          padding: 15px 0;
+      }
+      .step-card li {
+           margin-bottom: 10px;
+      }
+      .step-card .doc-list {
+          padding-left: 20px;
+          list-style-type: '📄';
+          padding-left: 25px;
+      }
+       .step-card .doc-list li {
+           padding-left: 10px;
+       }
+
+      /* --- Why This Matters Section --- */
+      .why-matters-section {
+          padding: 80px 0;
+      }
+      .comparison-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 30px;
+          max-width: 1024px;
+          margin: 40px auto 0 auto;
+      }
+      .comparison-card {
+          background-color: var(--bg-card-dark);
+          border: 1px solid var(--border-color-dark);
+          border-radius: 16px;
+          padding: 30px;
+      }
+      .comparison-card h3 {
+          font-size: 1.3rem;
+          margin-bottom: 20px;
+      }
+      .comparison-card ul {
+          list-style: none;
+      }
+      .comparison-card li {
+          margin-bottom: 10px;
+      }
+       .comparison-card .result {
+           margin-top: 20px;
+           font-weight: 700;
+           color: var(--text-light);
+       }
+       .math-simple {
+           margin-top: 40px;
+           font-size: 1.2rem;
+           font-weight: 700;
+           color: var(--text-light);
+       }
+
+
+      /* --- Testimonials Section --- */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      .testimonial-card {
+        background-color: var(--bg-card-dark);
+        border: 1px solid var(--border-color-dark);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: left;
+      }
+      .testimonial-card .quote-title {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        font-weight: 700;
+        color: var(--text-light);
+      }
+      .testimonial-card .quote {
+        font-size: 1.05rem;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testimonial-card .author {
+        font-weight: 700;
+        color: var(--text-light);
+      }
+      
+      /* --- Access Sections --- */
+       .portal-access-section ul, .reminder-section ul {
+          list-style: none;
+          max-width: 700px;
+          margin: 20px auto;
+          text-align: left;
+       }
+       .portal-access-section li, .reminder-section li {
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+       }
+       
+      /* --- FAQ Section --- */
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border-color-dark);
+        padding: 15px 0;
+        cursor: pointer;
+      }
+      .faq-item[open] summary ~ * {
+        animation: sweep .5s ease-in-out;
+      }
+      @keyframes sweep {
+        0%    {opacity: 0; transform: translateY(-10px)}
+        100%  {opacity: 1; transform: translateY(0)}
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+      .faq-question {
+        font-weight: 700;
+        color: var(--text-light);
+        font-size: 1.2rem;
+        position: relative;
+        padding-right: 35px;
+        list-style: none; /* Hide default marker */
+      }
+      .faq-question::-webkit-details-marker {
+        display: none; /* Hide default marker for Safari */
+      }
+      .faq-question::after {
+        content: '+';
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        font-weight: 300;
+        color: var(--accent-red);
+        transition: transform 0.2s ease-in-out;
+      }
+      .faq-item[open] .faq-question::after {
+        content: '×';
+        transform: translateY(-50%);
+      }
+      .faq-answer {
+        padding: 15px 5px 0 5px;
+        color: var(--text-medium-dark);
+      }
+      .faq-answer p {
+        max-width: 100%;
+        margin-left: 0;
+        font-size: 1.05rem;
+      }
+      .section-light .faq-item {
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .section-light .faq-question {
+        color: #1a1a1a;
+      }
+       .section-light .faq-answer {
+        color: #4d4d4d;
+      }
+      
+      /* --- Footer --- */
+      .legal-footer {
+        background: #000;
+        color: #666;
+        padding: 60px 20px;
+        font-size: 12px;
+        line-height: 1.6;
+        text-align: center;
+      }
+      .legal-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .legal-content p {
+        margin-bottom: 15px;
+        font-size: 12px;
+      }
+
+      /* --- Responsive Adjustments --- */
+      @media (min-width: 768px) {
+        .steps-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .comparison-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .section {
+          padding: 60px 0;
+        }
+        .section-header {
+          margin-bottom: 40px;
+        }
+        h1 {
+          font-size: 2.2rem;
+        }
+        p.subtitle {
+          font-size: 1.1rem;
+        }
+        .step-card, .comparison-card, .testimonial-card {
+            padding: 25px;
+        }
+        
+        /* Mobile Hero Section Optimization */
+        #hero-section {
+            padding: 30px 0; /* Tighter padding */
+        }
+        #hero-section .main-content-stacked {
+            gap: 20px; /* Reduced gap */
+        }
+        #hero-section h1 {
+            font-size: 1.9rem; /* Smaller H1 */
+            margin-bottom: 5px; /* Reduced margin */
+        }
+        #hero-section p.subtitle {
+            font-size: 1rem; /* Smaller subtitle */
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        #hero-section .pre-video-text {
+            padding: 20px;
+        }
+        #hero-section .pre-video-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        #hero-section .pre-video-text li, #hero-section .pre-video-text p {
+            font-size: 0.95rem;
+        }
+        #hero-section .section-cta-wrapper {
+            margin-top: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Main Headline Section -->
+      <section class="section" id="hero-section">
+        <div class="container">
+            <div class="main-content-stacked">
+              <div class="main-text-centered">
+                <h1>¡Felicidades! Acabas de Hacer Lo Que El 97% Nunca Hace...</h1>
+                <p class="subtitle">
+                  Mientras otros self-employed siguen postergando, tú ya agendaste tu llamada. Ahora mira este video de 3 minutos para descubrir cómo algunos clientes cerraron en solo 21 días por completar 2 pasos simples ANTES de la llamada.
+                </p>
+              </div>
+
+              <!-- Video Section -->
+              <div class="video-container">
+                  <div class="video-placeholder"><span>[VIDEO PLACEHOLDER AQUÍ]</span></div>
+              </div>
+              <div class="pre-video-text">
+                  <h3>⚠️ NO CIERRES ESTA PÁGINA HASTA VER EL VIDEO</h3>
+                  <p>En los próximos 3 minutos descubrirás:</p>
+                  <ul>
+                      <li>✅ Por qué llenar la aplicación ANTES de la llamada acorta tu cierre de 45 días a 21 días</li>
+                      <li>✅ Los 3 documentos exactos que necesitas subir al portal (y cómo evitar el error que retrasa todo)</li>
+                      <li>✅ El sistema que permite que yo revise tu caso 24h antes de la llamada (así llegamos con soluciones, no preguntas)</li>
+                  </ul>
+              </div>
+            </div>
+            <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+        </div>
+      </section>
+
+      <!-- Post-Video CTA Section -->
+      <section class="section section-light">
+          <div class="container">
+              <div class="main-content-stacked">
+                  <div class="section-header">
+                      <h2>🔥 Haz Estos 2 Pasos ANTES de Nuestra Llamada</h2>
+                      <p>Tu cita está confirmada, pero...<br>Los clientes que cierran más rápido son los que completan estos 2 pasos lo antes posible (no el día de la llamada):</p>
+                  </div>
+                  <div class="steps-grid">
+                      <!-- Step 1 Card -->
+                      <div class="step-card">
+                          <h3>Paso 1: Completa Tu Aplicación en Portal Arive</h3>
+                          <p>⏱️ <strong>Tiempo:</strong> 7-10 minutos</p>
+                          <p>Este es el portal seguro donde procesamos todas nuestras aprobaciones. Al completar tu aplicación ahora:</p>
+                          <ul>
+                              <li>✅ Yo puedo revisar tu perfil completo 24h ANTES de la llamada</li>
+                              <li>✅ Llegaremos a la llamada con números reales, no estimaciones</li>
+                              <li>✅ Identifico inmediatamente si calificas por ruta tradicional o no tradicional</li>
+                              <li>✅ Evitas perder 5-7 días esperando que "alguien te envíe el link después"</li>
+                          </ul>
+                          <p>La aplicación pregunta: nombre, dirección, ingresos, activos básicos, historial de empleo. Nada complicado.</p>
+                          
+                      </div>
+                      <!-- Step 2 Card -->
+                       <div class="step-card">
+                          <h3>Paso 2: Sube Tus Documentos al Portal Arive</h3>
+                          <p>⏱️ <strong>Tiempo:</strong> 5-8 minutos (si los tienes listos)</p>
+                          <p>Una vez completas la aplicación, el portal te mostrará exactamente qué documentos necesitas subir:</p>
+                          <p><strong>Documentos Típicos para Self-Employed:</strong></p>
+                          <ul class="doc-list">
+                              <li>Últimos 2 años de tax returns (1040)</li>
+                              <li>Últimos 2 meses de bank statements (todas las cuentas)</li>
+                              <li>Identificación oficial (licencia o pasaporte)</li>
+                              <li>Prueba de negocio activo (business license, EIN, etc.)</li>
+                          </ul>
+                          <p><strong>Por qué subirlos AHORA y no después:</strong></p>
+                           <ul>
+                              <li>✅ El portal valida automáticamente si están legibles y completos (te avisa al instante si falta algo)</li>
+                              <li>✅ Yo puedo empezar tu análisis de Doble Pre-Aprobación ANTES de la llamada</li>
+                              <li>✅ Evitas el error #1: llegar a la llamada sin documentos y perder tu slot de calendario</li>
+                              <li>✅ Si falta algo, tienes días para conseguirlo (no horas el día de la llamada)</li>
+                          </ul>
+                          
+                      </div>
+                  </div>
+              </div>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+
+      <!-- Why This Matters Section -->
+      <section class="why-matters-section section">
+          <div class="container">
+              <div class="section-header">
+                  <h2>⚡ La Diferencia Entre 21 Días y 45+ Días de Cierre</h2>
+              </div>
+              <div class="comparison-grid">
+                  <div class="comparison-card">
+                      <h3>Clientes que completan aplicación + documentos ANTES:</h3>
+                      <ul>
+                          <li>✅ Yo ya revisé su caso cuando entramos a la llamada</li>
+                          <li>✅ Les digo exactamente por cuál ruta califican (tradicional o no tradicional)</li>
+                          <li>✅ Empezamos a correr ambas aprobaciones el mismo día de la llamada</li>
+                      </ul>
+                      <p class="result">Resultado: Cierre promedio en 23 días</p>
+                  </div>
+                   <div class="comparison-card">
+                      <h3>Clientes que esperan hasta después de la llamada:</h3>
+                      <ul>
+                          <li>❌ Pierden 3-5 días llenando aplicación después de la llamada</li>
+                          <li>❌ Pierden otros 3-5 días subiendo documentos "cuando tengan tiempo"</li>
+                          <li>❌ Descubren que faltaban documentos críticos (otros 5-7 días perdidos)</li>
+                      </ul>
+                      <p class="result">Resultado: Cierre promedio en 42-50 días</p>
+                  </div>
+              </div>
+              <div class="section-header">
+                   <p class="math-simple">La matemática es simple: Misma casa. Misma aprobación.<br>Diferencia: 3 semanas menos de renta pagada = $3,000-$4,500 ahorrados.</p>
+              </div>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+      
+      <!-- Social Proof Section -->
+      <section class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ellos Completaron La Aplicación el Mismo Día Que Agendaron...</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                  <p class="quote-title">"Llené la aplicación mientras veía Netflix. 9 minutos. Best decisión ever."</p>
+                  <p class="quote">"Helmut me llamó el día antes de nuestra cita para confirmar que ya había revisado todo. Entramos a la llamada con números reales de mi aprobación. Cerré en 22 días. Mi cuñado que esperó hasta después de la llamada tardó 7 semanas."</p>
+                  <p class="author">— María González, Austin TX | Cerró en 22 días</p>
+                </div>
+                <div class="testimonial-card">
+                  <p class="quote-title">"Casi dejo la aplicación para 'después'. Hubiera perdido mi casa."</p>
+                  <p class="quote">"Encontré la casa perfecta 2 días después de agendar con Helmut. Como ya había completado la aplicación y subido documentos, él pudo darme una pre-aprobación en 4 horas. El vendedor aceptó mi oferta. Si hubiera esperado, otro comprador se la llevaba."</p>
+                  <p class="author">— Carlos Mendoza, Miami FL | Aprobado en 4 horas</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="quote-title">"El portal me salvó de cometer 2 errores que matarían mi aprobación."</p>
+                    <p class="quote">"Cuando subí mis bank statements, el portal me alertó que uno estaba 'muy viejo' (61 días). También me dijo que me faltaba una página del 1040. Tuve 3 días para arreglarlo. Si hubiera esperado hasta la llamada, hubiera perdido semanas."</p>
+                    <p class="author">— Ana Sofía Rincón, Denver CO | Portal detectó 2 errores críticos</p>
+                </div>
+              </div>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+        </div>
+      </section>
+      
+      <!-- Final Urgency Push -->
+      <section class="section" style="text-align: center;">
+          <div class="container">
+              <h3>Pregunta honesta: ¿Vas a llegar preparado o improvisando?</h3>
+              <p><strong>Preparado = Aplicación + Documentos lo antes posible</strong><br>Resultado: Números reales en la llamada, ambas rutas corriendo día 1, cierre en 3 semanas</p>
+              <p style="margin-top: 15px;"><strong>Improvisando = "Lo hago después"</strong><br>Resultado: Llamada genérica, pierdes 2 semanas en papeleo, cierre en 6-7 semanas</p>
+              <p style="margin-top: 25px;">Tú ya diste el paso difícil (agendar). Los 15 minutos que inviertas AHORA te ahorran 3 semanas después.</p>
+              
+              <div class="section-cta-wrapper" style="margin-top: 30px;">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+      
+      <!-- Portal Access Section -->
+      <section class="portal-access-section section section-light">
+          <div class="container" style="text-align: center;">
+              <h2>🔐 Cómo Acceder a Tu Portal Arive</h2>
+              <ul>
+                  <li><strong>Opción 1:</strong> Revisa el email que acabas de recibir (asunto: "Confirmación de Cita + Acceso a Portal")</li>
+                  <li><strong>Opción 2:</strong> Haz clic en cualquiera de los botones "ACCEDER AL PORTAL" en esta página.</li>
+                  <li><strong>Opción 3:</strong> Si no lo encuentras, envíame WhatsApp al [número] y te lo reenvío en 2 minutos.</li>
+              </ul>
+              <p><small>El portal usa autenticación de 2 factores (2FA) para proteger tu información. Es completamente seguro y cumple con todas las leyes federales (GLBA).</small></p>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq-section section">
+          <div class="container">
+              <div class="section-header">
+                  <h2>Preguntas Que Todos Hacen</h2>
+              </div>
+              <div class="faq-container">
+                  <details class="faq-item">
+                      <summary class="faq-question">¿Qué pasa si no tengo todos los documentos perfectos?</summary>
+                      <div class="faq-answer">
+                          <p>No te preocupes. Sube lo que tengas a la mano. El portal es inteligente y te dirá exactamente qué falta o si hay algún error. Es mucho mejor subir algo ahora que llegar a la llamada con las manos vacías.</p>
+                      </div>
+                  </details>
+                  <details class="faq-item">
+                      <summary class="faq-question">¿Cuánto tiempo tengo para completar esto?</summary>
+                      <div class="faq-answer">
+                          <p>Técnicamente, hasta el día de nuestra llamada. Pero los datos no mienten: los clientes que lo hacen en las primeras 24 horas después de agendar, cierran en promedio 18 días más rápido. La velocidad inicial marca la diferencia.</p>
+                      </div>
+                  </details>
+                  <details class="faq-item">
+                      <summary class="faq-question">¿Esto me compromete a algo?</summary>
+                      <div class="faq-answer">
+                          <p>Cero compromiso. Estás subiendo documentos para que YO pueda analizarlos y darte un plan de acción claro en nuestra llamada. Después, tú decides si quieres avanzar. No hay presión ni obligación.</p>
+                      </div>
+                  </details>
+                   <details class="faq-item">
+                      <summary class="faq-question">¿Es seguro subir información financiera?</summary>
+                      <div class="faq-answer">
+                          <p>Totalmente. El portal Arive usa encriptación de nivel bancario y autenticación de 2 factores (2FA). Para que te hagas una idea, tu información está más protegida ahí que en tu propia bandeja de entrada de email.</p>
+                      </div>
+                  </details>
+              </div>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+      
+      <!-- Reminder Section -->
+      <section class="reminder-section section section-light">
+          <div class="container" style="text-align: center;">
+              <h2>📧 Revisa Tu Email AHORA</h2>
+               <p>Acabas de recibir un email con:</p>
+              <ul>
+                  <li>✅ Link de acceso a Portal Arive (expira en 7 días)</li>
+                  <li>✅ Enlace de Zoom para nuestra llamada</li>
+                  <li>✅ Recordatorio de calendario (¡agrégalo YA!)</li>
+              </ul>
+              <p>¿No lo ves? Revisa spam/promociones o envíame WhatsApp al [número].</p>
+              <div class="section-cta-wrapper">
+                <a href="#" class="cta-button">ACCEDER AL PORTAL</a>
+            </div>
+          </div>
+      </section>
+      
+    </main>
+
+    <footer class="legal-footer">
+        <div class="legal-content">
+          <p><strong>(LOGO EDGE HOME FINANCE)</strong></p>
+          <p>
+            Edge Home Finance Corp, is an Equal Housing Lender. As prohibited by
+            federal law, we do not engage in business practices that discriminate
+            on the basis of race, color, religion, national origin, sex, marital
+            status, age (provided you have the capacity to enter into a binding
+            contract), because all or part of your income may be derived from any
+            public assistance program, or because you have, in good faith,
+            exercised any right under the Consumer Credit Protection Act.
+          </p>
+          <p>
+            The federal agency that administers our compliance with these federal
+            laws is the Federal Trade Commission, Equal Credit Opportunity,
+            Washington, DC, 20580. Edge Home Finance Corp is a licensed mortgage
+            broker in the following states CA, CO, FL, MN, NC, ND, WI and TX.
+          </p>
+        </div>
+      </footer>
+  </body>
+</html>
+
