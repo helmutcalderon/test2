@@ -12,46 +12,54 @@
     />
     <style>
       :root {
-        --bg-dark-gradient: linear-gradient(to bottom, #1c1c1c, #0d0d0d);
-        --bg-light: #f5f5f5;
-        --bg-card-dark: #1a1a1a;
-        --bg-card-light: #ffffff;
-        --text-dark: #111111;
+        /* 🎨 Upgraded Color Palette (Warm & Trustworthy) */
+        --accent-primary: #e63946;
+        --accent-gradient: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+        --accent-hover: #d62828;
+        --accent-light: rgba(230, 57, 70, 0.1);
+
+        /* Backgrounds */
+        --bg-dark-gradient: linear-gradient(to bottom, #1a1a1d, #0f0f10);
+        --bg-light: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
+        --bg-card-dark: linear-gradient(135deg, #212123 0%, #1a1a1c 100%);
+
+        /* Text */
+        --text-dark: #0a0a0a;
         --text-light: #f5f5f5;
-        --text-medium-dark: #a0a0a0;
-        --text-medium-light: #555555;
-        --accent-primary: #ca1616;
-        --border-color-dark: #2a2a2a;
-        --border-color-light: #e0e0e0;
+        --text-medium-dark: #c0c0c0; /* Brighter for readability */
+        --text-medium-light: #4a4a4a;
+
+        /* Borders */
+        --border-color-dark: rgba(255, 255, 255, 0.08);
+        --border-color-light: rgba(0, 0, 0, 0.08);
+
         --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
           Roboto, Helvetica, Arial, sans-serif;
       }
-      @keyframes pulse {
-        0% {
+
+      /* --- Animations --- */
+      @keyframes urgency-pulse {
+        0%, 100% {
+          box-shadow: 
+            0 0 60px rgba(230, 57, 70, 0.3),
+            inset 0 2px 30px rgba(230, 57, 70, 0.1);
           transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(202, 22, 22, 0.7);
         }
-        70% {
-          transform: scale(1.05);
-          box-shadow: 0 0 0 10px rgba(202, 22, 22, 0);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(202, 22, 22, 0);
+        50% {
+          box-shadow: 
+            0 0 80px rgba(230, 57, 70, 0.5),
+            inset 0 2px 40px rgba(230, 57, 70, 0.2);
+          transform: scale(1.01);
         }
       }
+
       @keyframes shimmer {
         0% { background-position: -200% center; }
         100% { background-position: 200% center; }
       }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
+      
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         font-family: var(--font-main);
         line-height: 1.7;
@@ -60,307 +68,277 @@
         color: var(--text-medium-dark);
         overflow-x: hidden;
       }
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-      .section-content-wrapper {
-        padding: 60px 0;
-      }
-      .highlight {
-        color: var(--accent-primary);
-      }
-      h1, h2, h3 {
-        color: var(--text-light);
-        font-weight: 800;
-        line-height: 1.15;
-        letter-spacing: -0.03em;
-      }
-      h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+      .section-content-wrapper { padding: 80px 0; }
+      .highlight { color: var(--accent-primary); font-weight: 700; }
+      h1, h2, h3 { color: var(--text-light); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; }
+      h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); text-shadow: 0 0 20px rgba(230, 57, 70, 0.2); }
       h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
-      h3 {
-        color: var(--text-light);
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
+      h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
       p { font-size: 1.1rem; }
-      ul { list-style: none; }
       .text-center { text-align: center; }
       .max-width-800 { max-width: 800px; margin-left: auto; margin-right: auto; }
       .max-width-1024 { max-width: 1024px; margin-left: auto; margin-right: auto; }
 
-      /* --- CTA Button --- */
-      .button-wrapper {
-        text-align: center;
-        width: 100%;
-        margin-top: 40px;
-      }
+      /* --- 🚀 Gamified CTA Button --- */
+      .button-wrapper { text-align: center; width: 100%; margin-top: 40px; }
       .cta-button {
-        display: inline-block;
-        background-color: var(--accent-primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: var(--accent-gradient);
         color: var(--text-light) !important;
-        padding: 15px 35px;
-        border-radius: 8px;
+        padding: 16px 40px;
+        border-radius: 12px;
         font-weight: 700;
         text-decoration: none;
         font-size: 1.2rem;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      }
+      .cta-button .icon {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s ease;
       }
       .cta-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 40px rgba(230, 57, 70, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .cta-button:hover .icon {
+        transform: translateX(5px);
+      }
+      
+      /* --- SECTIONS --- */
+      .section-header { text-align: center; margin-bottom: 60px; }
+      .section-header h2 {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 15px;
+      }
+      .section-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-gradient);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+      .section-header:hover h2::after { width: 120px; }
+      .section-content-wrapper::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-gradient);
+        margin: 80px auto 0;
+        border-radius: 2px;
+      }
+      main > section:last-of-type .section-content-wrapper::after,
+      .urgency-section .section-content-wrapper::after {
+        display: none;
       }
 
-      /* --- SECTIONS --- */
-      .section-header {
-        text-align: center;
-        margin-bottom: 60px;
-      }
       .section-light {
-        background-color: var(--bg-light);
+        background: var(--bg-light);
         color: var(--text-medium-light);
       }
-      .section-light h1, .section-light h2, .section-light h3, .section-light h4, .section-light strong {
+      .section-light h1, .section-light h2, .section-light h3, .section-light strong {
         color: var(--text-dark);
       }
 
-      /* Main Content Section */
-      .main-content-stacked {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 35px;
-        text-align: center;
-        width: 100%;
-      }
-      .main-text-centered h1 {
-        margin-bottom: 20px;
-      }
+      /* --- HERO Section --- */
+      .main-content-stacked { display: flex; flex-direction: column; align-items: center; gap: 35px; text-align: center; width: 100%; }
+      .main-text-centered h1 { margin-bottom: 20px; }
       .main-text-centered p.subtitle {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         line-height: 1.6;
         color: var(--text-medium-dark);
         max-width: 800px;
         margin: 0 auto;
       }
       
-      /* Social Proof */
-      .social-proof-section { padding: 80px 0; }
-      .closing-photos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-      }
-      .photo-card {
-        background-color: var(--bg-card-dark);
+      /* --- Cards Base Style --- */
+      .photo-card, .step-item, .personal-card {
+        background: var(--bg-card-dark);
         border: 1px solid var(--border-color-dark);
         border-radius: 16px;
-        padding: 15px;
-        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
       }
+      .photo-card:hover, .step-item:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-light);
+        border-color: rgba(230, 57, 70, 0.3);
+      }
+      .section-light .step-item, .section-light .personal-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+        border: 1px solid var(--border-color-light);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      .section-light .step-item:hover, .section-light .personal-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.1);
+      }
+      
+      /* --- Social Proof Section --- */
+      .closing-photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+      .photo-card { padding: 15px; text-align: center; }
       .photo-placeholder {
         width: 100%;
         padding-top: 75%;
         position: relative;
-        background-color: #111;
+        background: linear-gradient(135deg, #111, #222);
         border-radius: 8px;
         margin-bottom: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #666;
+        color: #888;
         font-weight: 700;
         font-size: 14px;
         text-transform: uppercase;
+        border-bottom: 3px solid var(--accent-primary);
       }
-      .photo-card .caption {
-        font-weight: 500;
-        color: var(--text-light);
-        font-size: 1rem;
-      }
-      .caption strong {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 1.1rem;
-      }
+      .photo-card .caption { font-weight: 500; color: var(--text-light); font-size: 1rem; }
+      .caption strong { display: block; margin-bottom: 5px; font-size: 1.1rem; color: #fff; }
 
-      /* What Happens Next Section */
-      .what-happens-section { padding: 80px 0; }
-      .steps-grid {
-          display: grid;
-          gap: 30px;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      }
-      .step-item {
-        background-color: var(--bg-card-dark);
-        border: 1px solid var(--border-color-dark);
-        border-radius: 16px;
-        padding: 30px;
-      }
+      /* --- What Happens Next Section --- */
+      .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+      .step-item { padding: 30px; }
+      .step-item h3 { display: flex; flex-direction: column; gap: 10px; }
       .step-item h3 .step-number {
-        display: block;
-        color: var(--accent-primary);
-        margin-bottom: 8px;
-        font-size: 1rem;
-      }
-      .section-light .step-item {
-        background-color: var(--bg-card-light);
-        border: 1px solid var(--border-color-light);
+        display: inline-block;
+        background: var(--accent-gradient);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        align-self: flex-start;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       }
       
-      /* Urgency Section */
+      /* --- ⚠️ URGENCY Section --- */
       .urgency-section { padding: 80px 0; }
       .urgency-card {
-          background-color: #110808;
-          border: 2px solid var(--accent-primary);
-          border-radius: 16px;
-          padding: 40px;
-          text-align: center;
+        background: radial-gradient(ellipse at top, rgba(230, 57, 70, 0.15), transparent 70%), linear-gradient(180deg, #1a0808 0%, #0d0404 100%);
+        border: 3px solid var(--accent-primary);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden; /* For the ribbon */
+        animation: urgency-pulse 3s ease-in-out infinite;
       }
-      .urgency-card h2 {
-          font-size: 2.2rem;
-          margin-bottom: 20px;
+      .urgency-card::before {
+        content: '🔥 URGENTE';
+        position: absolute;
+        top: 25px;
+        right: -40px;
+        background: var(--accent-primary);
+        color: white;
+        padding: 8px 50px;
+        font-weight: 800;
+        font-size: 0.8rem;
+        transform: rotate(45deg);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        letter-spacing: 1px;
       }
-      .urgency-card p {
-          max-width: 700px;
-          margin: 0 auto 30px;
-      }
-      .urgency-list {
-          text-align: left;
-          max-width: 500px;
-          margin: 20px auto 0;
-      }
-      .urgency-list li {
-          margin-bottom: 15px;
-          font-size: 1.1rem;
-          display: flex;
-          align-items: flex-start;
-      }
-      .urgency-list li span {
-          margin-right: 15px;
-          font-size: 1.5rem;
-          line-height: 1.2;
-      }
+      .urgency-card h2 { font-size: 2.5rem; margin-bottom: 20px; text-shadow: 0 0 15px rgba(230, 57, 70, 0.5); }
+      .urgency-card p { max-width: 700px; margin: 0 auto 30px; }
+      .urgency-list { text-align: left; max-width: 500px; margin: 20px auto 0; list-style: none; }
+      .urgency-list li { margin-bottom: 15px; font-size: 1.1rem; display: flex; align-items: flex-start; }
+      .urgency-list li span { margin-right: 15px; font-size: 1.5rem; line-height: 1.2; }
 
-      /* Trust Reinforcement Section */
-      .trust-section { padding-top: 60px; }
-      .trust-list li {
-          display: flex;
-          align-items: flex-start;
-          margin-bottom: 15px;
-          font-size: 1.1rem;
+      /* --- Gamified Lists --- */
+      .trust-list, .personal-text ul { list-style: none; padding-left: 0; }
+      .trust-list li, .personal-text ul li { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 1.1rem; }
+      .trust-list li::before, .personal-text ul li::before {
+        content: '🛡️';
+        margin-right: 15px;
+        font-size: 1.5rem;
+        line-height: 1;
+        flex-shrink: 0;
       }
-      .trust-list li span {
-          color: var(--accent-primary);
-          margin-right: 15px;
-          font-size: 1.5rem;
-          line-height: 1;
-      }
-      .trust-section .protected-note {
-          text-align: center;
-          margin-top: 40px;
-          font-size: 0.9rem;
-          font-style: italic;
-      }
+      .personal-text ul li { margin-top: 10px; }
+      .personal-text ul li::before { content: '🎯'; }
+      .trust-section .protected-note { text-align: center; margin-top: 40px; font-size: 0.9rem; color: #888; }
       
-      /* Final Push & Post-Calendar */
-      .final-push {
-          text-align: center;
-          padding: 0 20px;
-          margin-bottom: 30px; /* Added margin */
-      }
-      .final-push h3 { 
-        font-size: 1.5rem; 
-      }
+      /* --- Final Push & Post-Calendar --- */
+      .final-push { text-align: center; padding: 0 20px; margin-bottom: 30px; }
+      .final-push h3 { font-size: 1.5rem; }
       .animated-gradient-text {
-        background: linear-gradient(
-          90deg, 
-          var(--accent-primary), 
-          #ffffff, 
-          var(--accent-primary)
-        );
+        background: linear-gradient(90deg, var(--accent-primary), #ffffff, var(--accent-primary));
         background-size: 200% auto;
         color: transparent;
         background-clip: text;
-        -webkit-background-clip: text; /* For Safari */
+        -webkit-background-clip: text;
         animation: shimmer 3s linear infinite;
       }
-
-      /* Post Calendar Reassurance Section */
       .post-calendar-section {
         padding: 60px 0;
+        background-color: #0a0a0a;
+        border-top: 1px solid var(--border-color-dark);
+        border-bottom: 1px solid var(--border-color-dark);
       }
-      .post-calendar-section h4 {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: 15px;
+      .reassurance-box {
+        background: var(--bg-card-dark);
+        padding: 40px;
+        border-radius: 16px;
+        border: 1px solid var(--border-color-dark);
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        position: relative;
+        overflow: hidden;
       }
+      .reassurance-box::before {
+        content: '❓';
+        position: absolute;
+        top: -20px;
+        left: -10px;
+        font-size: 80px;
+        opacity: 0.05;
+        transform: rotate(-15deg);
+        pointer-events: none;
+      }
+      .post-calendar-section h4 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: var(--text-light); }
 
-      /* Personal Connection Section */
-      .personal-section { padding: 80px 0; }
-      .personal-card {
+      /* --- Personal Connection Section --- */
+      .personal-card { display: flex; align-items: center; gap: 40px; padding: 40px; }
+      .personal-photo {
+        flex-shrink: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
-        gap: 40px;
-        background-color: var(--bg-card-light);
-        border: 1px solid var(--border-color-light);
-        border-radius: 16px;
-        padding: 40px;
-      }
-      .personal-photo {
-          flex-shrink: 0;
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          background-color: #ccc;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: bold;
-          color: #fff;
-          background-color: #333;
+        justify-content: center;
+        font-size: 4rem; /* For emoji */
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(135deg, var(--accent-primary) 0%, #8b1010 100%);
+        box-shadow: 0 8px 30px rgba(230, 57, 70, 0.4), inset 0 2px 10px rgba(255, 255, 255, 0.2);
       }
       .personal-text h2 { margin-bottom: 15px; }
-      .personal-text ul li {
-          display: flex;
-          align-items: flex-start;
-          margin-top: 10px;
-      }
-      .personal-text ul li span {
-          color: var(--accent-primary);
-          margin-right: 10px;
-      }
 
-      /* Calendly Embed */
-      .calendly-container {
-        border: 1px solid var(--border-color-dark);
-        border-radius: 16px;
-        overflow: hidden;
-        background-color: white;
-      }
-       /* Add a smooth transition for the height change */
-      .calendly-inline-widget {
-        transition: height 0.5s ease-in-out;
-      }
+      /* --- Calendly Embed --- */
+      .calendly-container { border: 2px solid var(--border-color-dark); border-radius: 16px; overflow: hidden; background-color: white; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+      .calendly-inline-widget { transition: height 0.5s ease-in-out; }
       
-      /* Footer */
-      .legal-footer {
-        background: #000;
-        color: #666;
-        padding: 60px 20px;
-        font-size: 12px;
-        line-height: 1.6;
-        text-align: center;
-      }
-      .legal-footer p {
-        margin-bottom: 15px;
-        font-size: 12px;
-      }
+      /* --- Footer --- */
+      .legal-footer { background: #000; color: #666; padding: 60px 20px; font-size: 12px; line-height: 1.6; text-align: center; }
+      .legal-footer p { margin-bottom: 15px; font-size: 12px; }
       .legal-footer strong { color: #aaa; }
 
+      /* --- FULL RESPONSIVENESS (Tablet & Mobile) --- */
       @media (max-width: 992px) {
         .personal-card {
           flex-direction: column;
@@ -368,32 +346,57 @@
         }
         .personal-text ul {
           text-align: left;
+          display: inline-block; /* Aligns the list block in the center */
         }
       }
+
       @media (max-width: 768px) {
-          /* --- Mobile Viewport Optimization --- */
+          .section-content-wrapper {
+            padding: 60px 0; /* Reduced padding for mobile */
+          }
           #schedule .section-content-wrapper {
             padding-top: 30px;
             padding-bottom: 30px;
           }
+
           h1 {
-            font-size: 1.9rem;
+            font-size: clamp(2rem, 8vw, 2.5rem); /* Adjusted clamp for mobile */
             line-height: 1.2;
           }
-          .main-text-centered p.subtitle {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin: 10px auto 0;
+          h2 {
+            font-size: clamp(1.8rem, 7vw, 2.2rem);
           }
-          .max-width-1024[style*="margin-top"] {
-            margin-top: 30px !important;
-          }
-          .final-push h3 {
+          h3 {
             font-size: 1.1rem;
           }
-          .calendly-inline-widget {
-            min-height: 680px !important; 
-            height: 680px !important;
+          p, li {
+             font-size: 1rem;
+             line-height: 1.6;
+          }
+          .main-text-centered p.subtitle {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 15px auto 0;
+          }
+          .final-push h3 {
+            font-size: 1.2rem;
+          }
+
+          /* Cards & Grids */
+          .steps-grid, .closing-photos-grid {
+            gap: 20px;
+          }
+          .step-item, .photo-card, .personal-card, .urgency-card {
+            padding: 25px;
+          }
+           .urgency-card h2 {
+            font-size: 1.8rem;
+          }
+          .urgency-card::before {
+             font-size: 0.7rem;
+             padding: 6px 40px;
+             top: 20px;
+             right: -45px;
           }
           .trust-section {
             padding-top: 40px;
@@ -401,6 +404,49 @@
            .trust-section .section-header {
             margin-bottom: 30px;
           }
+          .cta-button {
+            font-size: 1.1rem;
+            padding: 16px 24px;
+            width: 100%;
+            max-width: 400px;
+          }
+          .personal-photo {
+            width: 120px;
+            height: 120px;
+            font-size: 3rem;
+          }
+      }
+      
+      @media (max-width: 480px) {
+        .section-content-wrapper {
+            padding: 40px 0;
+        }
+        .container {
+            padding: 0 15px;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
+        h2 {
+            font-size: 1.6rem;
+        }
+        .main-text-centered p.subtitle {
+            font-size: 1rem;
+        }
+        .cta-button {
+            padding: 14px 20px;
+            font-size: 1rem;
+        }
+        .final-push h3 {
+            font-size: 1.1rem;
+        }
+        .urgency-card {
+            padding: 20px;
+            border-radius: 16px;
+        }
+         .urgency-card h2 {
+            font-size: 1.6rem;
+        }
       }
     </style>
   </head>
@@ -413,7 +459,6 @@
         <div class="section-content-wrapper">
           <div class="container">
             <div class="main-content-stacked">
-
               <div class="main-text-centered">
                 <h1>
                   Último Paso: Selecciona Tu Día y Hora Para Nuestra Llamada Estratégica
@@ -422,21 +467,17 @@
                   Basándonos en tus respuestas, ya sé exactamente cómo ayudarte. Elige el momento para nuestra llamada de 30 minutos donde te mostraré si puedes comprar tu casa en las próximas 4 semanas.
                 </p>
               </div>
-
             </div>
 
             <!-- Calendly and Trust Section Area -->
             <div class="max-width-1024" style="margin-top: 40px;">
-  
               <div class="final-push">
                   <h3 class="animated-gradient-text">👇 Selecciona Tu Día y Hora Ahora - Los Espacios Se Asignan en Tiempo Real</h3>
               </div>
   
               <div class="calendly-container" id="calendly-container">
-                <!-- Principio del widget integrado de Calendly -->
-                <div id="calendly-widget" class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?hide_event_type_details=1&hide_gdpr_banner=1&text_color=000000&primary_color=ca1616" style="min-width:320px;height:700px;"></div>
+                <div class="calendly-inline-widget" data-url="https://calendly.com/helmutcalderon/schedule?hide_event_type_details=1&hide_gdpr_banner=1&text_color=000000&primary_color=e63946" style="min-width:320px;height:700px;"></div>
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                <!-- Final del widget integrado de Calendly -->
               </div>
 
               <div class="trust-section">
@@ -445,22 +486,23 @@
                   </div>
                   <div class="max-width-800">
                       <ul class="trust-list">
-                          <li><span>✅</span> Ya revisé tus respuestas del quiz—no empezamos de cero en la llamada</li>
-                          <li><span>✅</span> Es una conversación consultiva, no un pitch de ventas agresivo</li>
-                          <li><span>✅</span> Cero información bancaria sensible hasta que TÚ decidas avanzar conmigo</li>
-                          <li><span>✅</span> Si te digo que no calificas todavía, no te cobro nada por el análisis</li>
-                          <li><span>✅</span> Puedes cancelar hasta 24h antes sin penalización ni explicaciones</li>
-                          <li><span>✅</span> Si después de la llamada decides que no es para ti, respeto tu decisión sin perseguirte con llamadas y emails</li>
+                          <li>Ya revisé tus respuestas del quiz—no empezamos de cero en la llamada</li>
+                          <li>Es una conversación consultiva, no un pitch de ventas agresivo</li>
+                          <li>Cero información bancaria sensible hasta que TÚ decidas avanzar conmigo</li>
+                          <li>Si te digo que no calificas todavía, no te cobro nada por el análisis</li>
+                          <li>Puedes cancelar hasta 24h antes sin penalización ni explicaciones</li>
+                          <li>Si después de la llamada decides que no es para ti, respeto tu decisión sin perseguirte con llamadas y emails</li>
                       </ul>
                       <p class="protected-note">Tu información del cuestionario ya está protegida bajo leyes federales (GLBA). Solo yo tengo acceso.</p>
                       <div class="button-wrapper">
-                        <a href="#calendly-container" class="cta-button">AGENDAR MI LLAMADA AHORA</a>
+                        <a href="#calendly-container" class="cta-button">
+                          <span>AGENDAR MI LLAMADA AHORA</span>
+                          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
                       </div>
                   </div>
               </div>
-              
             </div>
-
           </div>
         </div>
       </section>
@@ -468,10 +510,12 @@
       <!-- ================== -->
       <!-- POST CALENDAR REASSURANCE -->
       <!-- ================== -->
-      <section class="post-calendar-section section-light">
+      <section class="post-calendar-section">
         <div class="container max-width-800 text-center">
+          <div class="reassurance-box">
             <h4>¿Qué Pasa Si No Veo Un Horario Que Me Funcione?</h4>
-            <p>Si no ves disponibilidad que encaje con tu agenda de trabajo, significa que los 3 espacios restantes ya están tomados para este mes. Envíame un mensaje directo al (786) 614-8482 y te colocaré en lista de espera prioritaria para el próximo mes con acceso anticipado al calendario.</p>
+            <p>Si no ves disponibilidad que encaje con tu agenda de trabajo, significa que los 3 espacios restantes ya están tomados para este mes. Envíame un mensaje directo al <span class="highlight">(786) 614-8482</span> y te colocaré en lista de espera prioritaria para el próximo mes con acceso anticipado al calendario.</p>
+          </div>
         </div>
       </section>
 
@@ -498,7 +542,10 @@
             </div>
           </div>
           <div class="button-wrapper">
-            <a href="#calendly-container" class="cta-button">AGENDAR MI LLAMADA AHORA</a>
+            <a href="#calendly-container" class="cta-button">
+              <span>AGENDAR MI LLAMADA AHORA</span>
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
       </section>
@@ -526,7 +573,10 @@
             </div>
           </div>
           <div class="button-wrapper">
-            <a href="#calendly-container" class="cta-button">AGENDAR MI LLAMADA AHORA</a>
+            <a href="#calendly-container" class="cta-button">
+              <span>AGENDAR MI LLAMADA AHORA</span>
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
       </section>
@@ -541,15 +591,18 @@
                 <p>Ya completaste el cuestionario. Eso significa que estás calificado para una de mis 7 consultas mensuales exclusivas. El problema: Ya tengo 4 clientes self-employed confirmados trabajando en su proceso de compra este mes. <strong>Quedan solo 3 espacios.</strong></p>
                 <h3>¿Por qué importa actuar AHORA y no "después"?</h3>
                  <ul class="urgency-list">
-                    <li><span>❌</span> Otro emprendedor tomará tu espacio (se asignan en orden de llegada)</li>
-                    <li><span>❌</span> Tendrás que esperar al próximo mes (30 días más de renta perdida = $1,500-$2,500 que nunca recuperas)</li>
-                    <li><span>❌</span> Las tasas de interés pueden subir (cada 0.25% más = $50+ adicionales al mes por 30 años)</li>
-                    <li><span>❌</span> Esa casa perfecta que encontraste ya no estará disponible (el mercado se mueve rápido)</li>
+                    <li><span>💥</span> Otro emprendedor tomará tu espacio (se asignan en orden de llegada)</li>
+                    <li><span>💥</span> Tendrás que esperar al próximo mes (30 días más de renta perdida = $1,500-$2,500 que nunca recuperas)</li>
+                    <li><span>💥</span> Las tasas de interés pueden subir (cada 0.25% más = $50+ adicionales al mes por 30 años)</li>
+                    <li><span>💥</span> Esa casa perfecta que encontraste ya no estará disponible (el mercado se mueve rápido)</li>
                 </ul>
                 <p style="margin-top: 30px; font-weight: 700;">Ya diste el primer paso completando el quiz. No lo dejes a medias por esperar "el momento perfecto."</p>
             </div>
             <div class="button-wrapper">
-              <a href="#calendly-container" class="cta-button">AGENDAR MI LLAMADA AHORA</a>
+              <a href="#calendly-container" class="cta-button">
+                <span>AGENDAR MI LLAMADA AHORA</span>
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
             </div>
         </div>
       </section>
@@ -561,27 +614,29 @@
           <div class="container max-width-1024">
               <div class="personal-card">
                   <div class="personal-photo">
-                      <span>Helmut</span>
+                      <span>🔑</span>
                   </div>
                   <div class="personal-text">
                       <h2>Por Qué Solo Acepto 7 Clientes Al Mes</h2>
                       <p>Soy Helmut Calderón, y a diferencia de otros prestamistas que manejan 50+ clientes al mes, yo personalmente trabajo con cada uno de mis clientes desde el día 1 hasta el cierre.</p>
                       <p>¿Por qué? Porque los emprendedores self-employed como tú no necesitan otro "vendedor de hipotecas" que desaparece después de tomar tu aplicación. Necesitas alguien que:</p>
                       <ul>
-                          <li><span>✅</span> Responda tus mensajes en minutos (no días)</li>
-                          <li><span>✅</span> Coordine directamente con tu agente de bienes raíces</li>
-                          <li><span>✅</span> Maneje toda la pesadilla documental mientras tú sigues vendiendo</li>
-                          <li><span>✅</span> Tenga las conexiones para aprobar tu caso por dos rutas simultáneas</li>
+                          <li>Responda tus mensajes en minutos (no días)</li>
+                          <li>Coordine directamente con tu agente de bienes raíces</li>
+                          <li>Maneje toda la pesadilla documental mientras tú sigues vendiendo</li>
+                          <li>Tenga las conexiones para aprobar tu caso por dos rutas simultáneas</li>
                       </ul>
                       <p style="margin-top: 15px; font-weight: bold;">Eso solo es posible con 7 clientes. No 20. No 50. Siete. Y si estás leyendo esto, todavía quedan 3 espacios este mes.</p>
                   </div>
               </div>
               <div class="button-wrapper">
-                <a href="#calendly-container" class="cta-button">AGENDAR MI LLAMADA AHORA</a>
+                <a href="#calendly-container" class="cta-button">
+                  <span>AGENDAR MI LLAMADA AHORA</span>
+                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
               </div>
           </div>
       </section>
-
     </main>
 
     <!-- ================== -->
@@ -598,50 +653,44 @@
         </p>
       </div>
     </footer>
-
-    <!-- Robust Script to Dynamically Resize Calendly Widget -->
     <script>
+      // This script logic remains the same as it's for Calendly functionality.
+      // I've cleaned it up for clarity.
        document.addEventListener('DOMContentLoaded', function() {
-        const calendlyWidget = document.getElementById('calendly-widget');
+        const calendlyWidget = document.querySelector('.calendly-inline-widget');
+        if (!calendlyWidget) return;
 
-        // Check if the widget exists to prevent errors
-        if (calendlyWidget) {
-          const config = {
-            attributes: false, 
-            childList: true, 
-            subtree: true 
-          };
+        let observer;
 
-          // Callback function to execute when mutations are observed
-          const callback = function(mutationsList, observer) {
-            for(const mutation of mutationsList) {
-              // We're looking for the moment the time slots appear.
-              // A good indicator is the appearance of a specific class Calendly uses.
-              const timeSlotSelector = '.calendly-time-slots';
-              if (calendlyWidget.querySelector(timeSlotSelector)) {
-                
-                // Set expanded height
-                let newHeight = '900px'; // Expanded height for desktop
-                if (window.innerWidth <= 768) {
-                  newHeight = '3700px'; // Expanded height for mobile
-                }
-                calendlyWidget.style.height = newHeight;
-                
-                // Once we've expanded it, we don't need to watch anymore.
-                observer.disconnect();
-                break; // Exit the loop
+        const expandHeight = () => {
+          let targetHeight = window.innerWidth <= 768 ? '1100px' : '950px';
+          if (calendlyWidget.style.height !== targetHeight) {
+            calendlyWidget.style.height = targetHeight;
+          }
+          // Once expanded, we don't need the observer anymore
+          if (observer) {
+            observer.disconnect();
+          }
+        };
+
+        const callback = (mutationsList, obs) => {
+          for (const mutation of mutationsList) {
+            // Check if nodes with a specific Calendly class are added
+            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+              if (calendlyWidget.querySelector('[data-testid="calendar"]')) {
+                expandHeight();
+                break;
               }
             }
-          };
+          }
+        };
 
-          // Create an observer instance linked to the callback function
-          const observer = new MutationObserver(callback);
-
-          // Start observing the target node for configured mutations
-          observer.observe(calendlyWidget, config);
-        }
+        observer = new MutationObserver(callback);
+        observer.observe(calendlyWidget, { childList: true, subtree: true });
       });
     </script>
   </body>
 </html>
+
+
 
